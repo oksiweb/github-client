@@ -972,11 +972,13 @@ var Card = function (_Component) {
             return _this2.setState({
                 repos: repos,
                 loading: false,
-                languages: [].concat(new Set(repos.map(function (r) {
+                languages: repos.map(function (r) {
                     return r.language;
                 }).filter(function (l) {
                     return l;
-                })))
+                }).filter(function (v, i, a) {
+                    return a.indexOf(v) === i;
+                })
             });
         });
     };
