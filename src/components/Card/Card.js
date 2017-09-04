@@ -33,7 +33,7 @@ export default class Card extends Component {
             .then((repos) => this.setState({
                 repos,
                 loading: false,
-                languages: [...new Set(repos.map(r => r.language).filter(l => l))]
+                languages: (repos.map(r => r.language).filter(l => l).filter((v, i, a) => a.indexOf(v) === i))
             }));
     }
 
