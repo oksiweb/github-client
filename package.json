@@ -1,37 +1,34 @@
 {
-  "name": "my-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "preact": "^8.2.1",
-    "preact-compat": "^3.17.0",
-    "preact-router": "^2.5.7"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2017": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "clean-webpack-plugin": "^0.1.16",
-    "es2017": "0.0.0",
-    "html-webpack-plugin": "^2.30.1",
-    "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1",
-    "cross-env": "^5.0.5",
-    "serve": "^6.0.6"
-  },
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
-    "start": "serve build -s -c 1",
-    "prestart": "npm run dev",
-    "build": "cross-env NODE_ENV=production preact build"
-  },
-  "author": "Oksana",
-  "license": "ISC"
+	"name": "kottans",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "eslint src && preact test",
+		"start": "if-env NODE_ENV=dev && npm run -s serve || npm run -s dev",
+		"build": "preact build  --dest build --no-prerender",
+		"serve": "preact build && preact serve",
+		"dev": "preact watch",
+		"deploy": "npm run build && gh-pages --dist build --branch master"
+	},
+	"keywords": [],
+	"author": "Oksana",
+	"pre-commit": ["deploy"],
+	"license": "ISC",
+	"eslintConfig": {
+		"extends": "eslint-config-synacor"
+	},
+	"devDependencies": {
+		"eslint": "^4.5.0",
+		"eslint-config-synacor": "^1.1.0",
+		"gh-pages": "^1.0.0",
+		"if-env": "^1.0.0",
+		"pre-commit": "^1.2.2",
+		"preact-cli": "^1.4.1"
+	},
+	"dependencies": {
+		"preact": "^8.2.1",
+		"preact-compat": "^3.17.0",
+		"preact-router": "^2.5.6"
+	}
 }

@@ -12,14 +12,21 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?/i,
+                test: /\.(js|jsx)$/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['env', 'es2015', 'es2017', 'stage-0'],
+                    presets: ['env', 'es2015', 'es2016', 'es2017', 'stage-0'],
                     plugins: [
                         ['transform-react-jsx', { pragma:'h' }]
                     ]
                 }
+            },
+            {
+                test: /\.css$/,
+                use:[
+                    'style-loader',
+                    'css-loader'
+                ]
             }
         ]
     },
