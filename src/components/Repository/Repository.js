@@ -40,11 +40,18 @@ class Repository extends Component {
             <li class={css.listItem}>
                 <ul class={css.description}>
                     <li><a onClick={this.toggleModal.bind(this)} >{repository.name}</a></li>
-                    <li>{'description '+repository.description || 'description is absent'}</li>
-                    <li>{repository.fork ? 'forked' : 'not forked'}</li>
-                    <li>stars: {repository.stargazers_count}</li>
-                    <li>{formatDate(repository.updated_at)}</li>
-                    <li>{repository.language}</li>
+                    <li class={repository.fork ? css.fork : css.notforked }>{repository.fork ? 'forked' : 'not forked'}</li>
+                    <li class={css.description}>{repository.description || 'description is absent'}</li>
+                    <li class={css.stars}>
+                        <svg height="25" width="23"  data-rating="1">
+                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+                        </svg>
+                        <span>{repository.stargazers_count}</span>
+                    </li>
+                    <li class={css.date}>
+                        <span>{formatDate(repository.updated_at)}</span>
+                        <span>{repository.language}</span>
+                    </li>
                 </ul>
                 <Dialog
                     shouldShowModal={shouldShowModal}
