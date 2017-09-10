@@ -1,0 +1,25 @@
+.form input[type="text"] {
+    margin: 0 5px 0 0;
+    padding: 5px 10px;
+    border: 1px solid #673ab8;
+    border-radius: 3px;
+    font-size: 100%;
+}
+
+.form input[type="text"]:focus {
+    outline: #673ab8 auto 0.4em;
+}
+
+.form input[type="submit"] {
+    margin: 0 5px 0 0;
+    padding: 5px 10px;
+    border: 1px solid #673ab8;
+    border-radius: 3px;
+    font-size: 100%;
+    background: #673ab8;
+    color: #fff;
+}
+
+.form input[type="submit"]:focus {
+    outline: none;
+}

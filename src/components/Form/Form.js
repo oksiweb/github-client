@@ -1,5 +1,6 @@
 import { h, Component } from 'preact'
 import { route } from 'preact-router';
+import css from './Form.css'
 
 export default class Home extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export default class Home extends Component {
 
         return (
             <section className="submit">
-                <form onSubmit = {this.redirectPage} >
+                <form onSubmit = {this.redirectPage} class={css.form} >
                     <input type="text"  onInput={this.updateText} />
                     <input type="submit" onClick={this.redirectPage} value="add"/>
                 </form>

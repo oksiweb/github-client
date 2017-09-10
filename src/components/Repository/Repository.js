@@ -1,4 +1,7 @@
 import { h, Component } from 'preact'
+import {Dialog} from '../Dialog/Dialog';
+import '../Dialog/Dialog.css'
+import css from './Repository.css'
 
 const formatDate = (date) => {
     let tmpDate = new Date(date);
@@ -15,18 +18,41 @@ const formatDate = (date) => {
     return year+'-' + month + '-'+dt;
 };
 
-export default class App extends Component {
+class Repository extends Component {
+    constructor(props) {
+        super(props);
 
-    render() {
+        this.state = {
+            shouldShowModal: false
+        }
+    }
+
+    toggleModal (e) {
+        e.stopPropagation();
+
+        this.setState({
+            shouldShowModal: !this.state.shouldShowModal
+        });
+    }
+
+    render({repository}, {shouldShowModal}) {
         return (
-            <ul>
-                <li>{this.props.repository.name}</li>
-                <li>{'description '+this.props.repository.description || 'description is absent'}</li>
-                <li>{this.props.repository.fork ? 'forked' : 'not forked'}</li>
-                <li>stars: {this.props.repository.stargazers_count}</li>
-                <li>{formatDate(this.props.repository.updated_at)}</li>
-                <li>{this.props.repository.language}</li>
-            </ul>
+            <li class={css.listItem}>
+                <ul class={css.description}>
+                    <li><a onClick={this.toggleModal.bind(this)} >{repository.name}</a></li>
+                    <li>{'description '+repository.description || 'description is absent'}</li>
+                    <li>{repository.fork ? 'forked' : 'not forked'}</li>
+                    <li>stars: {repository.stargazers_count}</li>
+                    <li>{formatDate(repository.updated_at)}</li>
+                    <li>{repository.language}</li>
+                </ul>
+                <Dialog
+                    shouldShowModal={shouldShowModal}
+                    repo={this.props}
+                    onClose={this.toggleModal.bind(this)} />
+            </li>
         )
     }
 }
+
+export {Repository}
